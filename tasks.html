@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestor de Tareas</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/app.js" defer></script>
+    <link rel="manifest" href="/manifest.json">
+</head>
+<body id="urgent-screen-body">
+
+    <header class="logo-only-header">
+        <img src="img/Logo.png" alt="Logo de la Aplicación" class="app-logo">
+    </header>
+
+    <div class="app-container">
+        <main class="urgent-main-content">
+            <header class="screen-header">
+                <div class="header-info">
+                    <img class="header-icon" src="img/icono-urgentes.png" alt="Icono Urgentes">
+                    <h2 id="task-list-title" class="screen-title">Urgentes</h2>
+                </div>
+                <div class="header-actions">
+                    <button id="add-task-header-button" class="header-action-button">
+                        <img src="img/icono-sumar.png" alt="Agregar Tarea">
+                    </button>
+                    <span class="task-count">0</span>
+                </div>
+            </header>
+
+            <div class="task-list-container">
+                <ul id="urgent-tasks-list">
+                    </ul>
+            </div>
+            
+            <div class="action-buttons">
+                <button id="add-task-footer-button" class="cta-button">Nueva task</button>
+            </div>
+        </main>
+
+        <nav class="bottom-nav">
+            <a href="index.html" class="nav-item">
+                <img src="img/nav/icono-home.png" alt="Home">
+                <span>HOME</span>
+            </a>
+            <a href="tasks.html?status=urgent" class="nav-item">
+                <img src="img/nav/icono-urgentes.png" alt="Urgentes">
+                <span>URGENTES</span>
+            </a>
+            <a href="tasks.html?status=pending" class="nav-item">
+                <img src="img/nav/icono-pendientes.png" alt="Pendientes">
+                <span>PENDIENTES</span>
+            </a>
+            <a href="tasks.html?status=meetings" class="nav-item">
+                <img src="img/nav/icono-reuniones.png" alt="Reuniones">
+                <span>REUNIONES</span>
+            </a>
+            <a href="tasks.html?status=finished" class="nav-item">
+                <img src="img/nav/icono-finalizadas.png" alt="Finalizadas">
+                <span>FINALIZADAS</span>
+            </a>
+            <a href="tasks.html?status=paused" class="nav-item">
+                <img src="img/nav/icono-sin-culminar.png" alt="Sin culminar">
+                <span>SIN TERMINAR</span>
+            </a>
+        </nav>
+    </div>
+
+    <div id="delete-modal" class="modal-overlay">
+        <div class="modal-content">
+            <header class="modal-header">
+                <img class="header-icon" src="img/icono-borrar.png" alt="Icono Borrar">
+                <button class="modal-close-button"><img src="img/icono-cerrar.png" alt="Cerrar"></button>
+            </header>
+            <div class="modal-body">
+                <h3 class="modal-title">¿Borrar tarea?</h3>
+                <p>Estás a punto de eliminar una tarea. Esta acción no se puede deshacer.</p>
+                <div class="modal-actions">
+                    <button id="confirm-delete-button" class="cta-button">Sí, borrar</button>
+                    <button id="cancel-delete-button" class="cta-button secondary">Cancelar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="add-task-modal" class="modal-overlay">
+        <div class="modal-content">
+            <header class="modal-header">
+                <img class="header-icon" src="img/icono-sumar.png" alt="Icono Agregar Tarea">
+                <button class="modal-close-button"><img src="img/icono-cerrar.png" alt="Cerrar"></button>
+            </header>
+            <div class="modal-body">
+                <h3 class="modal-title">Nueva Tarea</h3>
+                <form id="add-task-form">
+                    <div class="form-group">
+                        <label for="add-task-title">Título</label>
+                        <input type="text" id="add-task-title" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="add-task-description">Descripción</label>
+                        <textarea id="add-task-description"></textarea>
+                    </div>
+                    <div class="modal-actions">
+                        <button type="submit" class="cta-button">Agregar</button>
+                        <button type="button" class="cta-button secondary">Cancelar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div id="edit-task-modal" class="modal-overlay">
+        <div class="modal-content">
+            <header class="modal-header">
+                <img class="header-icon" src="img/icono-editar.png" alt="Icono Editar">
+                <button class="modal-close-button"><img src="img/icono-cerrar.png" alt="Cerrar"></button>
+            </header>
+            <div class="modal-body">
+                <h3 class="modal-title">Editar Tarea</h3>
+                <form id="edit-task-form">
+                    <div class="form-group">
+                        <label for="edit-task-title">Título</label>
+                        <input type="text" id="edit-task-title" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="edit-task-description">Descripción</label>
+                        <textarea id="edit-task-description"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="edit-task-status">Cambiar a Panel:</label>
+                        <select id="edit-task-status" class="form-control">
+                            <option value="urgent">Urgentes</option>
+                            <option value="pending">Pendientes</option>
+                            <option value="meetings">Próxima reunión</option>
+                            <option value="paused">Sin poder culminar</option>
+                        </select>
+                    </div>
+                    <div class="modal-section">
+                        <h4>Subtareas</h4>
+                        <ul id="edit-subtasks-list" class="subtask-list">
+                            </ul>
+                        <div class="add-item-container">
+                            <input type="text" id="new-subtask-input" placeholder="Nueva subtarea...">
+                            <button type="button" id="add-subtask-button" class="add-button">+</button>
+                        </div>
+                    </div>
+                    <div class="modal-section">
+                        <h4>Comentarios</h4>
+                        <ul id="edit-comments-list" class="comment-list">
+                            </ul>
+                        <div class="add-item-container">
+                            <input type="text" id="new-comment-input" placeholder="Nuevo comentario...">
+                            <button type="button" id="add-comment-button" class="add-button">+</button>
+                        </div>
+                    </div>
+                    <div class="modal-actions">
+                        <button type="submit" class="cta-button">Confirmar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

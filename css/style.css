@@ -1,0 +1,841 @@
+/* ¡IMPORTANTE! El @import debe ser la primera regla del archivo */
+@import url('https://fonts.googleapis.com/css2?family=Bagel+Fat+One&family=Comfortaa:wght@300..700&family=Darker+Grotesque:wght@300..900&family=Mozilla+Headline:wght@200..700&display=swap');
+
+/* Regla para que el padding y border no afecten el tamaño total de los elementos */
+* {
+    box-sizing: border-box;
+}
+
+/* Variables de color para fácil acceso */
+:root {
+    --color-fondo: #191a1f;
+    --color-fondo-tareas: #2b303a;
+    --color-trazo: #363940;
+    --color-morado: #7a5bff;
+    --color-amarillo: #daf304;
+}
+
+/* Estilos generales y del body */
+body {
+    font-family: 'Comfortaa', sans-serif;
+    color: #fff;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    overflow-x: hidden; /* Esto previene el scroll horizontal */
+}
+
+/* Estilo para el body de la página principal */
+#home-screen-body {
+    background-color: var(--color-fondo);
+}
+
+/* Estilo para el body de la página de urgentes (degradado)
+#urgent-screen-body {
+    background: linear-gradient(135deg, #816bf2, #6a3cff);
+} */
+
+/* Contenedor principal de la app */
+.app-container {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    padding-bottom: 80px;
+    width: 100%;
+}
+
+/* Estilos de la pantalla de HOME */
+.main-header {
+    text-align: center;
+    margin-bottom: 30px;
+    color: var(--color-amarillo);
+    width: 100%;
+}
+
+.main-header h1 {
+    font-family: 'Mozilla Headline', sans-serif;
+    font-size: 2.2rem;
+    font-weight: 600;
+}
+
+.main-menu {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 450px;
+    gap: 15px;
+}
+
+.menu-button {
+    background-color: var(--color-fondo-tareas);
+    border: 2px solid var(--color-trazo);
+    border-radius: 15px;
+    color: #fff;
+    padding: 15px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    font-family: 'Comfortaa', sans-serif;
+    font-size: 1.2rem;
+}
+
+.menu-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.button-icon {
+    width: 60px;
+    height: 60px;
+    margin-right: 15px;
+    padding: 5px;
+    border-radius: 8px;
+}
+
+.button-text {
+    flex-grow: 1;
+    text-align: left;
+    font-size: 1.2rem;
+}
+
+.task-count {
+    background-color: var(--color-morado);
+    color: var(--color-amarillo);
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    font-family: 'Bagel Fat One', sans-serif;
+}
+
+/* Botón de acción principal (amarillo) */
+.cta-button {
+    background-color: var(--color-amarillo);
+    color: var(--color-fondo);
+    border: none;
+    border-radius: 15px;
+    padding: 15px 20px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 20px;
+    width: 100%;
+    transition: background-color 0.2s ease;
+    font-family: 'Bagel Fat One', sans-serif;
+}
+
+.cta-button:hover {
+    background-color: #fce605;
+}
+
+/* Barra de navegación inferior */
+.bottom-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: var(--color-fondo-tareas);
+    border-top: 2px solid var(--color-trazo);
+    display: flex;
+    justify-content: space-around;
+    padding: 10px 0;
+}
+
+.nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    font-size: 0.5rem;
+}
+
+.nav-item span {
+    color: #fff;
+    margin-top: 5px;
+}
+
+.nav-item img {
+    width: 24px;
+    height: 24px;
+    margin-bottom: 5px;
+    filter: invert(0.5);
+    transition: filter 0.2s ease;
+}
+
+.nav-item.active span {
+    color: var(--color-morado);
+}
+
+.nav-item.active img {
+    filter: invert(36%) sepia(91%) saturate(5426%) hue-rotate(248deg) brightness(101%) contrast(105%);
+}
+
+/* ------------------------------------------- */
+/* Estilos para la Pantalla de Tareas Urgentes */
+/* ------------------------------------------- */
+.screen-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--color-fondo-tareas);
+    border: 2px solid var(--color-trazo);
+    border-radius: 15px;
+    padding: 10px 20px;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.screen-header h2 {
+    color: #fff;
+    font-family: 'Mozilla Headline', sans-serif;
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin: 0;
+}
+
+.screen-header .header-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.screen-header .header-icon {
+    width: 30px;
+    height: 30px;
+}
+
+.screen-header .task-count {
+    background-color: transparent;
+    color: var(--color-amarillo);
+    font-size: 1.5rem;
+    font-weight: bold;
+    font-family: 'Bagel Fat One', sans-serif;
+}
+
+.task-list-container {
+    flex-grow: 1;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    width: 100%;
+    background-color: var(--color-fondo-tareas);
+    border: 2px solid var(--color-trazo);
+    border-radius: 15px;
+    padding: 10px;
+}
+
+.task-list-container ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.task-list-container li {
+    background-color: transparent;
+    border: none;
+    padding: 15px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--color-trazo);
+}
+
+.task-list-container li:last-child {
+    border-bottom: none;
+}
+
+.task-info {
+    display: flex;
+    align-items: center;
+    flex-grow: 1;
+}
+
+.task-info h3 {
+    margin: 0;
+    font-size: 1.2rem;
+    color: #fff;
+    flex-grow: 1;
+}
+
+.task-info input[type="checkbox"] {
+    width: 24px;
+    height: 24px;
+    margin-right: 15px;
+    cursor: pointer;
+    appearance: none;
+    background-color: transparent;
+    border: 2px solid var(--color-morado);
+    border-radius: 5px;
+    position: relative;
+    flex-shrink: 0;
+}
+
+.task-info input[type="checkbox"]:checked {
+    background-color: var(--color-morado);
+    border-color: var(--color-morado);
+}
+
+.task-info input[type="checkbox"]:checked::after {
+    content: '';
+    display: block;
+    width: 10px;
+    height: 15px;
+    border: solid #fff;
+    border-width: 0 3px 3px 0;
+    transform: rotate(45deg);
+    position: absolute;
+    top: 2px;
+    left: 7px;
+}
+
+.task-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.task-actions button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+}
+
+.task-actions img {
+    width: 24px;
+    height: 24px;
+    filter: invert(1);
+}
+
+.action-buttons {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.action-buttons .cta-button {
+    background-color: var(--color-amarillo);
+    color: var(--color-fondo);
+    border: none;
+    border-radius: 15px;
+    padding: 15px 20px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    cursor: pointer;
+    width: 100%;
+    font-family: 'Bagel Fat One', sans-serif;
+}
+
+/* -------------------- */
+/* Estilos del Modal */
+/* -------------------- */
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: none; /* Oculto por defecto */
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; /* Asegurarse de que esté por encima de otros elementos */
+}
+
+.modal-overlay.active {
+    display: flex; /* Mostrar cuando tenga la clase 'active' */
+}
+
+.modal-content {
+    background-color: var(--color-fondo-tareas);
+    border: 2px solid var(--color-trazo);
+    border-radius: 20px;
+    padding: 20px;
+    width: 90%;
+    max-width: 450px;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.modal-header .header-icon {
+    width: 30px;
+    height: 30px;
+}
+
+.modal-header .modal-close-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.modal-header .modal-close-button img {
+    width: 24px;
+    height: 24px;
+}
+
+.modal-body {
+    text-align: center;
+}
+
+.modal-title {
+    font-family: 'Mozilla Headline', sans-serif;
+    font-size: 1.5rem;
+    color: #fff;
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
+.modal-body .form-group {
+    text-align: left;
+    margin-bottom: 15px;
+}
+
+.modal-body label {
+    font-size: 1rem;
+    color: var(--color-morado);
+    display: block;
+    margin-bottom: 5px;
+}
+
+.modal-body input[type="text"],
+.modal-body textarea {
+    width: 100%;
+    padding: 10px;
+    border-radius: 10px;
+    border: 2px solid var(--color-trazo);
+    background-color: var(--color-fondo);
+    color: #fff;
+    font-family: 'Comfortaa', sans-serif;
+    resize: none;
+    outline: none;
+}
+
+.modal-body input[type="text"]:focus,
+.modal-body textarea:focus {
+    border-color: var(--color-morado);
+}
+
+.modal-actions {
+    margin-top: 25px;
+}
+
+/* Animación para la aparición del modal */
+@keyframes fadeIn {
+from {
+    opacity: 0;
+    transform: translateY(-20px);
+}
+to {
+    opacity: 1;
+    transform: translateY(0);
+}
+}
+
+/* ------------------------------------- */
+/* Estilos del Modal de Eliminación */
+/* ------------------------------------- */
+
+#delete-modal .modal-content {
+    text-align: center;
+}
+
+#delete-modal .modal-title {
+    color: var(--color-morado);
+}
+
+#delete-modal p {
+    color: #ccc;
+    font-size: 1rem;
+    margin-bottom: 20px;
+}
+
+#delete-modal .modal-actions {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+#delete-modal #confirm-delete-button {
+    background-color: #ff6273; /* Color rojo para el botón de borrar */
+    color: #fff;
+    font-family: 'Comfortaa', sans-serif; /* Corregí la fuente */
+}
+
+/* Estilo para un botón secundario */
+.cta-button.secondary {
+    background-color: #666;
+    color: #fff;
+    font-family: 'Comfortaa', sans-serif; /* Corregí la fuente */
+}
+
+.cta-button.secondary:hover {
+    background-color: #888;
+}
+
+/* Estilos para el nuevo botón en la cabecera */
+.screen-header .header-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.screen-header .header-action-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+}
+
+.screen-header .header-action-button img {
+    width: 24px;
+    height: 24px;
+}
+
+/* ------------------------------------- */
+/* Estilos del Modal de Edición */
+/* ------------------------------------- */
+
+#edit-task-modal .modal-content {
+    background-color: var(--color-fondo-tareas);
+    border: 2px solid var(--color-trazo);
+    border-radius: 20px;
+    padding: 20px;
+    width: 90%;
+    max-width: 500px;
+}
+
+#edit-task-modal .modal-header .header-icon {
+    color: var(--color-morado);
+    filter: invert(36%) sepia(91%) saturate(5426%) hue-rotate(248deg) brightness(101%) contrast(105%);
+}
+
+#edit-task-modal .modal-title {
+    color: var(--color-amarillo);
+    text-align: center;
+}
+
+#edit-task-modal .modal-body {
+    text-align: left;
+}
+
+.modal-body .form-group {
+    margin-bottom: 20px;
+}
+
+.modal-body .modal-section {
+    background-color: var(--color-fondo);
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 2px solid var(--color-trazo);
+}
+
+.modal-body .modal-section h4 {
+    margin-top: 0;
+    color: var(--color-morado);
+    font-family: 'Comfortaa', sans-serif;
+    font-weight: 700;
+}
+
+.subtask-list, .comment-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 10px 0;
+}
+
+.subtask-list li, .comment-list li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+    color: #fff;
+    border-bottom: 1px solid var(--color-trazo);
+}
+
+.subtask-list li:last-child, .comment-list li:last-child {
+    border-bottom: none;
+}
+
+.subtask-text, .comment-text {
+    flex-grow: 1;
+}
+
+.add-item-container {
+    display: flex;
+    gap: 10px;
+}
+
+#new-subtask-input, #new-comment-input {
+    flex-grow: 1;
+    padding: 8px 12px;
+    border-radius: 8px;
+    border: 2px solid var(--color-trazo);
+    background-color: transparent;
+    color: #fff;
+    outline: none;
+}
+
+.add-button {
+    background-color: var(--color-morado);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.5rem;
+    width: 35px;
+    height: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+/* Estilos para las listas de subtareas y comentarios en el modal de edición */
+.subtask-list,
+.comment-list {
+    max-height: 150px; /* Limita la altura de la lista. Puedes ajustar este valor. */
+    overflow-y: auto;  /* Habilita el scroll vertical solo cuando sea necesario. */
+    list-style: none;  /* Opcional: elimina las viñetas por defecto de la lista */
+    padding: 0;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+/* ------------------------------------- */
+/* Estilos del Modal de Edición */
+/* ------------------------------------- */
+
+#edit-task-modal .modal-content {
+    background-color: var(--color-fondo-tareas);
+    border: 2px solid var(--color-trazo);
+    border-radius: 20px;
+    padding: 20px;
+    width: 90%;
+    max-width: 500px;
+}
+
+#edit-task-modal .modal-header .header-icon {
+    filter: invert(36%) sepia(91%) saturate(5426%) hue-rotate(248deg) brightness(101%) contrast(105%);
+}
+
+#edit-task-modal .modal-title {
+    color: var(--color-amarillo);
+    text-align: center;
+}
+
+#edit-task-modal .modal-body {
+    text-align: left;
+}
+
+.modal-body .form-group {
+    margin-bottom: 20px;
+}
+
+.modal-body .modal-section {
+    background-color: var(--color-fondo);
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 2px solid var(--color-trazo);
+}
+
+.modal-body .modal-section h4 {
+    margin-top: 0;
+    color: var(--color-morado);
+    font-family: 'Comfortaa', sans-serif;
+    font-weight: 700;
+}
+
+.subtask-list, .comment-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 10px 0;
+}
+
+.subtask-list li, .comment-list li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+    color: #fff;
+    border-bottom: 1px solid var(--color-trazo);
+}
+
+.subtask-list li:last-child, .comment-list li:last-child {
+    border-bottom: none;
+}
+
+.subtask-text, .comment-text {
+    flex-grow: 1;
+}
+
+.add-item-container {
+    display: flex;
+    gap: 10px;
+}
+
+#new-subtask-input, #new-comment-input {
+    flex-grow: 1;
+    padding: 8px 12px;
+    border-radius: 8px;
+    border: 2px solid var(--color-trazo);
+    background-color: transparent;
+    color: #fff;
+    outline: none;
+}
+
+.add-button {
+    background-color: var(--color-morado);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.5rem;
+    width: 35px;
+    height: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+/* Estilos para el menú desplegable de cambio de panel */
+#edit-task-status {
+    width: 100%;
+    padding: 10px 15px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 13px;
+    background-color: var(--color-fondo);
+    color: #fff;
+    -webkit-appearance: none; /* Elimina la apariencia por defecto de Safari */
+    -moz-appearance: none;    /* Elimina la apariencia por defecto de Firefox */
+    appearance: none;         /* Elimina la apariencia por defecto de otros navegadores */
+    background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23000000%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13.2-5.4H18.6c-5%200-9.3%201.8-13.2%205.4A17.6%2017.6%200%200%200%200%2082.6c0%205%201.8%209.3%205.4%2013.2l128%20127.9c3.9%203.9%208.7%205.8%2013.2%205.8s9.3-1.8%2013.2-5.8l128-128c3.9-3.9%205.8-8.7%205.8-13.2-.1-5-1.9-9.2-5.8-13.1z%22%2F%3E%3C%2Fsvg%3E'); /* Icono de flecha SVG en base64 */
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 12px;
+    cursor: pointer;
+    font-family: 'Comfortaa', sans-serif;
+}
+
+#edit-task-status:hover {
+    border-color: #555;
+}
+
+#edit-task-status:focus {
+    outline: none;
+    border-color: #3f51b5; /* Color del borde al enfocar, puedes cambiarlo */
+    box-shadow: 0 0 0 2px rgba(63, 81, 181, 0.2);
+}
+
+/* Estilos para el logo y la cabecera */
+
+.app-logo {
+    height: 35px;      /* Ajusta la altura deseada del logo */
+    max-width: 100%;   /* Evita que el logo se desborde de su contenedor */
+    margin-right: 10px;
+    margin-top: 20px;
+    object-fit: contain; /* Asegura que la imagen se ajuste sin deformarse */
+    justify-content: center;
+}
+
+/* Estilo para el contenedor del logo y el título en la home */
+.home-header .header-logo-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Alinear el logo y el título en la cabecera de las tareas */
+.screen-header .header-info {
+    display: flex;
+    align-items: center;
+}
+
+/* Puedes ajustar el tamaño del icono de la tarea para que esté alineado con el logo */
+.screen-header .header-info .header-icon {
+    width: 25px;
+    height: 25px;
+    margin-left: 10px;
+}
+
+/* Estilo para el header que solo contiene el logo */
+.logo-only-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60px; /* Altura de la cabecera del logo */
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+/* Ajusta el logo dentro de este nuevo header */
+.logo-only-header .app-logo {
+    height: 40px; /* Tamaño del logo en esta cabecera */
+}
+
+body {
+    padding-top: 70px; /* Asegura que el contenido comience debajo del header fijo */
+}
+
+/* Espacio superior para la página de INICIO */
+#home-screen-body {
+    padding-top: 20px; /* Ajusta este valor a tu gusto */
+    background-color: var(--color-fondo);
+}
+
+/* Espacio superior para la página de TAREAS */
+#urgent-screen-body {
+    padding-top: 90px; /* Mantén el valor de la altura de tu logo-only-header */
+    background-color: var(--color-fondo);
+}
+
+/* Elimina la línea debajo de los enlaces del menú de la página de inicio */
+.menu-button {
+    text-decoration: none;
+}
+
+/* Estilos para la pantalla de inicio */
+#splash-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #fff; /* O el color de fondo que desees */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    transition: opacity 1s ease-in-out;
+}
+
+/* Oculta la pantalla de inicio */
+#splash-screen.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* Oculta el contenedor principal de la app por defecto */
+.app-container {
+    display: none;
+}

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestor de Tareas</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&family=Comfortaa:wght@300..700&family=Darker+Grotesque:wght@300..900&family=Mozilla+Headline:wght@200..700&display=swap" rel="stylesheet">
+    <link rel="manifest" href="/manifest.json">
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body id="home-screen-body">
+
+    <!-- PANTALLA DE INICIO (SPLASH SCREEN) -->
+    <div id="splash-screen">
+        <video id="splash-video" width="100%" height="auto" muted>
+            <source src="img/Animacion.mp4" type="video/mp4">
+            Tu navegador no soporta el video.
+        </video>
+    </div>
+
+    <div class="app-container">
+        <main class="app-main-content">
+            <div class="screen active" id="home-screen">
+                <header class="home-header centered-logo-header">
+                    <div class="header-logo-container">
+                        <img src="img/Logo.png" alt="Logo de la Aplicación" class="app-logo">
+                    </div>
+                </header>
+                <header class="main-header">
+                    <h2>¡Vamos a salir de los pendientes!</h2>
+                </header>
+
+                <div class="main-menu">
+                    <a href="tasks.html?status=urgent" class="menu-button" id="btn-urgentes">
+                        <img src="img/icono-urgentes.png" alt="Icono Urgentes" class="button-icon">
+                        <span class="button-text">Urgentes</span>
+                        <div class="task-count" id="urgent-count">1</div>
+                    </a>
+                
+                    <a href="tasks.html?status=pending" class="menu-button" id="btn-pendientes">
+                        <img src="img/icono-pendientes.png" alt="Icono Pendientes" class="button-icon">
+                        <span class="button-text">Pendientes</span>
+                        <span class="task-count" id="normal-count">1</span>
+                    </a>
+                
+                    <a href="tasks.html?status=meetings" class="menu-button" id="btn-reuniones">
+                        <img src="img/icono-reuniones.png" alt="Icono Reuniones" class="button-icon">
+                        <span class="button-text">Próxima reunión</span>
+                        <span class="task-count" id="meeting-count">1</span>
+                    </a>
+                    
+                    <a href="tasks.html?status=finished" class="menu-button" id="btn-finalizadas">
+                        <img src="img/icono-finalizadas.png" alt="Icono Finalizadas" class="button-icon">
+                        <span class="button-text">Finalizadas</span>
+                        <span class="task-count" id="finished-count">1</span>
+                    </a>
+                    
+                    <a href="tasks.html?status=paused" class="menu-button" id="btn-sin-culminar">
+                        <img src="img/icono-sin-culminar.png" alt="Icono Sin poder culminar" class="button-icon">
+                        <span class="button-text">Sin poder culminar</span>
+                        <span class="task-count" id="paused-count">1</span>
+                    </a>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <nav class="bottom-nav">
+        <a href="index.html" class="nav-item">
+            <img src="img/nav/icono-home.png" alt="Home">
+            <span>HOME</span>
+        </a>
+        <a href="tasks.html?status=urgent" class="nav-item">
+            <img src="img/nav/icono-urgentes.png" alt="Urgentes">
+            <span>URGENTES</span>
+        </a>
+        <a href="tasks.html?status=pending" class="nav-item">
+            <img src="img/nav/icono-pendientes.png" alt="Pendientes">
+            <span>PENDIENTES</span>
+        </a>
+        <a href="tasks.html?status=meetings" class="nav-item">
+            <img src="img/nav/icono-reuniones.png" alt="Reuniones">
+            <span>REUNIONES</span>
+        </a>
+        <a href="tasks.html?status=finished" class="nav-item">
+            <img src="img/nav/icono-finalizadas.png" alt="Finalizadas">
+            <span>FINALIZADAS</span>
+        </a>
+        <a href="tasks.html?status=paused" class="nav-item">
+            <img src="img/nav/icono-sin-culminar.png" alt="Sin culminar">
+            <span>SIN TERMINAR</span>
+        </a>
+    </nav>
+    
+    <script src="js/app.js" defer></script>
+</body>
+</html>

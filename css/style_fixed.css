@@ -1,0 +1,422 @@
+/* ¡IMPORTANTE! El @import debe ser la primera regla del archivo */
+@import url('https://fonts.googleapis.com/css2?family=Bagel+Fat+One&family=Comfortaa:wght@300..700&family=Darker+Grotesque:wght@300..900&family=Mozilla+Headline:wght@200..700&display=swap');
+
+/* Regla para que el padding y border no afecten el tamaño total de los elementos */
+* {
+    box-sizing: border-box;
+}
+
+/* Variables de color para fácil acceso */
+:root {
+    --color-fondo: #191a1f;
+    --color-fondo-tareas: #2b303a;
+    --color-trazo: #363940;
+    --color-morado: #7a5bff;
+    --color-amarillo: #daf304;
+}
+
+/* Estilos generales y del body */
+body {
+    font-family: 'Comfortaa', sans-serif;
+    color: #fff;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+/* Estilo para el body de la página principal */
+#home-screen-body {
+    background-color: var(--color-fondo);
+}
+
+/* Estilo para el body de la página de urgentes (degradado) */
+#urgent-screen-body {
+    background: linear-gradient(135deg, #816bf2, #6a3cff);
+}
+
+/* Contenedor principal de la app */
+.app-container {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    padding-bottom: 80px;
+    width: 100%;
+    background-color: var(--color-fondo);
+}
+
+/* Estilos de la pantalla de HOME */
+.main-header {
+    text-align: center;
+    margin-bottom: 30px;
+    color: var(--color-amarillo);
+    width: 100%;
+}
+
+.main-header h1 {
+    font-family: 'Mozilla Headline', sans-serif;
+    font-size: 2.2rem;
+    font-weight: 600;
+}
+
+.main-menu {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 450px;
+    gap: 15px;
+}
+
+.menu-button {
+    background-color: var(--color-fondo-tareas);
+    border: 2px solid var(--color-trazo);
+    border-radius: 15px;
+    color: #fff;
+    padding: 15px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    font-family: 'Comfortaa', sans-serif;
+    font-size: 1.2rem;
+}
+
+.menu-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.button-icon {
+    width: 60px;
+    height: 60px;
+    margin-right: 15px;
+    padding: 5px;
+    border-radius: 8px;
+}
+
+.button-text {
+    flex-grow: 1;
+    text-align: left;
+    font-size: 1.2rem;
+}
+
+.task-count {
+    background-color: var(--color-morado);
+    color: var(--color-amarillo);
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    font-family: 'Bagel Fat One', sans-serif;
+}
+
+/* Botón de acción principal (amarillo) */
+.cta-button {
+    background-color: var(--color-amarillo);
+    color: var(--color-fondo);
+    border: none;
+    border-radius: 15px;
+    padding: 15px 20px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 20px;
+    width: 100%;
+    transition: background-color 0.2s ease;
+    font-family: 'Bagel Fat One', sans-serif;
+}
+
+.cta-button:hover {
+    background-color: #fce605;
+}
+
+/* Barra de navegación inferior */
+.bottom-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: var(--color-fondo-tareas);
+    border-top: 2px solid var(--color-trazo);
+    display: flex;
+    justify-content: space-around;
+    padding: 10px 0;
+}
+
+.nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    font-size: 0.5rem;
+}
+
+.nav-item span {
+    color: #fff;
+    margin-top: 5px;
+}
+
+.nav-item img {
+    width: 24px;
+    height: 24px;
+    margin-bottom: 5px;
+    color: var(--color-morado);
+    transition: filter 0.2s ease;
+}
+
+.nav-item.active span {
+    color: var(--color-morado);
+}
+
+.nav-item.active img {
+    filter: invert(36%) sepia(91%) saturate(5426%) hue-rotate(248deg) brightness(101%) contrast(105%);
+}
+
+/* ------------------------------------------- */
+/* Estilos para la Pantalla de Tareas Urgentes */
+/* ------------------------------------------- */
+.screen-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--color-fondo-tareas);
+    border: 2px solid var(--color-trazo);
+    border-radius: 15px;
+    padding: 10px 20px;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.screen-header h2 {
+    color: #fff;
+    font-family: 'Mozilla Headline', sans-serif;
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin: 0;
+}
+
+.screen-header .header-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.screen-header .header-icon {
+    width: 30px;
+    height: 30px;
+    color: var(--color-amarillo);
+    filter: brightness(0) saturate(100%) invert(88%) sepia(87%) saturate(1478%) hue-rotate(15deg) brightness(108%) contrast(105%);
+}
+
+.screen-header .task-count {
+    background-color: transparent;
+    color: var(--color-amarillo);
+    font-size: 1.5rem;
+    font-weight: bold;
+    font-family: 'Bagel Fat One', sans-serif;
+}
+
+.task-list-container {
+    flex-grow: 1;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    width: 100%;
+    background-color: var(--color-fondo-tareas);
+    border: 2px solid var(--color-trazo);
+    border-radius: 15px;
+    padding: 10px;
+}
+
+.task-list-container ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.task-list-container li {
+    background-color: transparent;
+    border: none;
+    padding: 15px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--color-trazo);
+}
+
+.task-list-container li:last-child {
+    border-bottom: none;
+}
+
+.task-info {
+    display: flex;
+    align-items: center;
+    flex-grow: 1;
+}
+
+.task-info h3 {
+    margin: 0;
+    font-size: 1.2rem;
+    color: #fff;
+    flex-grow: 1;
+}
+
+.task-info input[type="checkbox"] {
+    width: 24px;
+    height: 24px;
+    margin-right: 15px;
+    cursor: pointer;
+    appearance: none;
+    background-color: transparent;
+    border: 2px solid var(--color-morado);
+    border-radius: 5px;
+    position: relative;
+    flex-shrink: 0;
+}
+
+.task-info input[type="checkbox"]:checked {
+    background-color: var(--color-morado);
+    border-color: var(--color-morado);
+}
+
+.task-info input[type="checkbox"]:checked::after {
+    content: '';
+    display: block;
+    width: 10px;
+    height: 15px;
+    border: solid #fff;
+    border-width: 0 3px 3px 0;
+    transform: rotate(45deg);
+    position: absolute;
+    top: 2px;
+    left: 7px;
+}
+
+.task-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.task-actions button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+    color: var(--color-morado);
+    filter: invert(1);
+}
+
+.task-actions img {
+    width: 24px;
+    height: 24px;
+    filter: invert(1);
+}
+
+.action-buttons {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.action-buttons .cta-button {
+    background-color: var(--color-amarillo);
+    color: var(--color-fondo);
+    border: none;
+    border-radius: 15px;
+    padding: 15px 20px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    cursor: pointer;
+    width: 100%;
+    font-family: 'Bagel Fat One', sans-serif;
+}
+
+/* -------------------- */
+/* Estilos del Modal */
+/* -------------------- */
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-overlay.active {
+    display: flex;
+}
+
+.modal-content {
+    background-color: var(--color-fondo-tareas);
+    border: 2px solid var(--color-trazo);
+    border-radius: 20px;
+    padding: 20px;
+    width: 90%;
+    max-width: 450px;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.modal-header .header-icon {
+    width: 30px;
+    height: 30px;
+    color: var(--color-amarillo);
+    filter: brightness(0) saturate(100%) invert(88%) sepia(87%) saturate(1478%) hue-rotate(15deg) brightness(108%) contrast(105%);
+}
+
+.modal-header .modal-close-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.modal-header .modal-close-button img {
+    width: 24px;
+    height: 24px;
+}
+
+.modal-body {
+    text-align: center;
+}
+
+/* Estilos específicos para el modal de eliminación */
+#delete-modal .modal-title {
+    color: var(--color-morado);
+}
+
+#delete-modal p {
+    color: #fff;
+    margin-bottom: 20px;
+}
+
+/* Animación de entrada del modal */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
